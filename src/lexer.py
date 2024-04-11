@@ -2,24 +2,22 @@ import re
 import tokens as t
 import error
 
-#                if        else
-conditionals = ['alpha', 'beta']
-#                      NOT      AND     OR    EQUAL  DIFF  >=   <=
-logicals_operator = ['FAKE', 'MOGGED', 'GOD', '==', '!=', '>=', '<=']
-#                 TRUE      FALSE    
-boolean_values = ['VERUM', 'FALSUM']
-#               NULL
-null_value = 'NIHIL'
-#                =
-assignment_op = '->'
-#                BREAK
-control_word = 'BYEBYE'
+
+#                 boolean     string     char     int     float     
+type_variables = ['STATUS', 'GIGACHAD', 'CHAD', 'SIGMA', 'REAL']
+#                       if       else    while         for        break      return
+control_structures = ['ALPHA', 'BETA','ALPHA_LOOP','BETA_LOOP', 'BYEBYE', 'ELEVATE']
+#                      NOT      AND     OR    
+logicals_operators = ['FAKE', 'MOGGED', 'GOD']
+#                 TRUE      FALSE     NULL
+special_values = ['VERUM', 'FALSUM', 'NIHIL']
+#             =    EQUAL  DIFF  >  <   >=   <=     
+operators = ['->', '==', '!=','>','<' '>=', '<=']
+#            (    )    ,    "    #    ;
+symbols = ['(', ')', ',', '@', '//', '$']
 #                       def
 function_key_word = 'COMMAND'
-#         while      for
-loop = ['mewing','bonesMashing']
-#                 boolean     string     char     int     float     
-type_variables = ['status', 'gigaChad', 'chad', 'sigma', 'real']
+
 
 class Lexer:
     def __init__(self, text):
@@ -50,14 +48,18 @@ class Lexer:
                 self.advance()
             elif re.match(r'[\d]', self.current_char):
                 tokens.append(self.make_number())
+            
             elif self.current_char == '@': ##hacer esto
                 tokens.append(self.make_variable())
+            
             elif self.current_char == '$':
                 tokens.append(t.Token(t.Token_END, "$"))
+            
             elif self.current_char == '-' and self.peek() == '>':
                 self.advance() 
                 self.advance()
                 tokens.append(t.Token(t.Token_ASSIGNMENT_OP, assignment_op))
+            
             elif self.current_char == '+':
                 tokens.append(t.Token(t.Token_PLUS, "+"))
                 self.advance()
@@ -70,6 +72,7 @@ class Lexer:
             elif self.current_char == '/':
                 tokens.append(t.Token(t.Token_DIV, "/"))
                 self.advance()
+            
             elif self.current_char == '(':
                 tokens.append(t.Token(t.Token_LPAREN, "("))
                 self.advance()
@@ -97,7 +100,7 @@ class Lexer:
         if '.' in num_str:
             return t.Token(t.Token_FLOAT, float(num_str))
         else:
-            return t.Token(t.Token_INT, int(num_str))
+            return t.Token(t.Token_INTEGER, int(num_str))
     
     ##def make_variable(self):
         
