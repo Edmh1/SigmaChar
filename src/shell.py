@@ -1,10 +1,11 @@
 import lexer
 
 while True:
-    text = input("nombreDelLenguaje > ")
+    text = input("SigmaChar🗿 > ")
     result, err = lexer.run(text)
 
     if err: 
         print(err.as_string())
     else: 
-        print(result) 
+        print("**Lexema:",result, "**") 
+        
