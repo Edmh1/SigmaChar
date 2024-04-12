@@ -1,8 +1,8 @@
 #Data types
-Token_INTEGER      = 'NUMBER'
-Token_FLOAT        = 'FLOAT'
-Token_STRING       = 'STRING'
-Token_CHAR         = 'CHAR'
+Token_INTEGER      = 'NUMBER_INTEGER'
+Token_FLOAT        = 'NUMBER_FLOAT'
+Token_STRING       = 'TEXT_STRING'
+Token_CHAR         = 'TEXT_CHAR'
 Token_VAR          = 'VARIABLE'
 
 #aritmetic_op
@@ -50,6 +50,9 @@ Token_SEPARATION = 'SEPARATION'
 Token_START_STR  = 'START_STRING'
 Token_START_COMM = 'START_COMMENT'
 Token_END        = 'END_LINE'
+
+#function
+Token_FUNCT_DECLARATION = 'FUNCTION_DECLARATION'
 
 class Token:
     def __init__(self, type, value = None):

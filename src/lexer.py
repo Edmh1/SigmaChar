@@ -46,12 +46,12 @@ class Lexer:
         while self.current_char is not None:
             if re.match(r'[ \t]', self.current_char):
                 self.advance()
+            #Data types
             elif re.match(r'[\d]', self.current_char):
                 tokens.append(self.make_number())
-            
-            elif self.current_char == '@': ##hacer esto
-                tokens.append(self.make_variable())
-            
+            elif self.current_char == '@':
+                self.advance()
+                tokens.append(self.make_text())
             elif self.current_char == '$':
                 tokens.append(t.Token(t.Token_END, "$"))
             
@@ -102,8 +102,11 @@ class Lexer:
         else:
             return t.Token(t.Token_INTEGER, int(num_str))
     
-    ##def make_variable(self):
-        
+    def make_text(self):
+        txt_str = ''
+
+        while self.current_char is not None:
+            
 
 
         
