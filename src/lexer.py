@@ -106,7 +106,7 @@ class Lexer:
         txt_str = ''
 
         while self.current_char is not None:
-            
+            pass
 
 
         

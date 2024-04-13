@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sigma Char</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="main.js"></script>
+</head>
+<body>
+    <header>
+        <img class="logo" src="assets/img/logoSigmaCharSinFondo.png" width="75px" height="75px">
+        <h2 class="tittle">SIGMA CHAR</h2>
+    </header>
+    <div class="container">
+        <div class="input-section">
+            <textarea id= "inputCode" class="input" rows="4" cols="50"></textarea>
+            <button onclick="getInput()">
+                    <span class="transition"></span>
+                    <span class="gradient"></span>
+                    <span class="label">ENVIAR</span>             
+            </button>
+        </div>
+        <div class="results">
+            <textarea class = "results-content" readonly>
+SigmaChar es un lenguaje de programación basado en el léxico sigma, aquí un peuqueño resumen de nuestro lenguaje:
+
+            1. Tipos de variables:
+                STATUS = boolean
+                GIGACHAD = string
+                CHAD = char
+                SIGMA = int
+                REAL = float
+
+            2. Estrucutas de control:
+                ALPHA = if
+                BETA = else
+                ALPHA_LOOP = while
+                BETA_LOOP = for
+                BYEBYE = break
+                ELEVATE = return
+
+            3. Operadores lógicos:
+                FAKE = not
+                MOGGED = and
+                GOD = or
+
+            4. Valores especiales:
+                VERUM = true
+                FALSUM = false
+                NIHIL = null
+
+            5. Operadores:
+                '->' = Asignación
+                '==' = Igual
+                '!=' = Diferente
+                '>' = Mayor que
+                '<' = Menor que
+                '>=' = Mayor o igual que
+                '<=' = Menor o igual que
+
+            6. Simbolos:
+                '(' = Parentesis izquierdo
+                ')' = Parentesis derecho
+                ',' = Coma flotante
+                '@' = Nombre de variables
+                '//' = Comentarios
+                '$' = Fin de linea
+
+            7. Palabras claves:
+                COMMAND = definir función
+
+    Aquí un pequeño ejempplo:
+
+    SIGMA @entero -> 2$
+    REAL @float -> 0$
+
+    ALPHA (@entero == 2 MOGGED  @float == 0){
+        @float -> @entero * 3,1416$
+    }
+            </textarea>
+        </div>
+    </div>
+</body>
+</html>
