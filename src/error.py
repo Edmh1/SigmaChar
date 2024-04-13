@@ -12,5 +12,5 @@ class IllegalCharError(Error):
         super().__init__("Illegal Character", details)
 
 class MissingCharTextError(Error):
-    def __init__(self):
-        super().__init__("Missing Char to end the String", "expected char is @")
+    def __init__(self, details):
+        super().__init__("Missing Char to end the String expected char is", details)

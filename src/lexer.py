@@ -2,27 +2,28 @@ import re
 import tokens as t
 import error
 
-
-#                 boolean     string     char     int     float     
-type_variables = ['STATUS', 'GIGACHAD', 'CHAD', 'SIGMA', 'REAL']
 #
 aritmetics_op = ['+','-','*','/']
+#                 boolean     string     char     int     float     
+variable_types = ['STATUS', 'GIGACHAD', 'CHAD', 'SIGMA', 'REAL']
 #                       if       else    while         for        break      return
 control_structures = ['ALPHA', 'BETA','ALPHA_LOOP','BETA_LOOP', 'BYEBYE', 'ELEVATE']
 #                      NOT      AND     OR    
-logicals_operators = ['FAKE', 'MOGGED', 'GOD']
+logical_operators = ['FAKE', 'MOGGED', 'GOD']
 #                 TRUE      FALSE     NULL
 special_values = ['VERUM', 'FALSUM', 'NIHIL']
-#             =    EQUAL  DIFF  >  <   >=   <=     
-operators = ['->', '==', '!=','>','<' '>=', '<=']
-#            (    )    ,    "    #    ;
-symbols = ['(', ')', ',', '@', '//', '$']
 #                       def
 function_key_word = 'COMMAND'
+#              =    <   >    <=   >=     EQUAL  DIFF  
+operators = ['<-', '<', '>', '<=', '>=', '==', '!=']
+#            (    )    ,    "    #    ;
+symbols = ['(', ')', ',', '@', '#', '$']
+
 
 
 class Lexer:
     def __init__(self, text):
+        self.details = ''
         self.text = text
         self.pos = -1
         self.current_char = None
@@ -42,8 +43,9 @@ class Lexer:
         else:
             return None
 
-    def missingChar(self):
+    def missingChar(self, details):
         self.current_char = "¬"
+        self.details = details
 
 
     def make_tokens(self):
@@ -52,7 +54,7 @@ class Lexer:
         while self.current_char is not None:
             if re.match(r'[ \t]', self.current_char):
                 self.advance()
-            #Data types
+            #data types
             elif re.match(r'[\d]', self.current_char):
                 tokens.append(self.make_number())
             elif self.current_char == '@':
@@ -60,37 +62,111 @@ class Lexer:
             elif re.match(r'^[a-z]', self.current_char):
                 tokens.append(t.Token(t.Token_VAR, self.make_var()))
             #aritmetic_op
-
-            
-            elif self.current_char == '$':
-                tokens.append(t.Token(t.Token_END, "$"))
-            
-            elif self.current_char == '-' and self.peek() == '>':
-                self.advance() 
+            elif re.match(r'[+\-*\/]', self.current_char):
+                if self.current_char == '+':
+                    tokens.append(t.Token(t.Token_PLUS, "+"))
+                elif self.current_char == '-':
+                    tokens.append(t.Token(t.Token_MINUS, "-"))
+                elif self.current_char == '*':
+                    tokens.append(t.Token(t.Token_MUL, "*"))
+                elif self.current_char == '/':
+                    tokens.append(t.Token(t.Token_DIV, "/"))
                 self.advance()
-                tokens.append(t.Token(t.Token_ASSIGNMENT_OP))
-            
-            elif self.current_char == '+':
-                tokens.append(t.Token(t.Token_PLUS, "+"))
+            #reserved words
+            elif re.match(r'^[A-Z]', self.current_char):
+                word = self.make_word()
+                #variable types
+                if word == "STATUS":
+                    tokens.append(t.Token(t.Token_Type_BOOLEAN, word))
+                elif word == "GIGACHAD":
+                    tokens.append(t.Token(t.Token_Type_STRING, word))
+                elif word == "CHAD":
+                    tokens.append(t.Token(t.Token_Type_CHAR, word))
+                elif word == "SIGMA":
+                    tokens.append(t.Token(t.Token_Type_INTEGER, word))
+                elif word == "REAL":
+                    tokens.append(t.Token(t.Token_Type_FLOAT, word))
+                #control structures
+                elif word == "ALPHA":
+                    tokens.append(t.Token(t.Token_CONDITIONAL, word))
+                elif word == "BETA":
+                    tokens.append(t.Token(t.Token_CONDITIONAL, word))
+                elif word == "ALPHA_LOOP":
+                    tokens.append(t.Token(t.Token_LOOP, word))
+                elif word == "BETA_LOOP":
+                    tokens.append(t.Token(t.Token_LOOP, word))
+                elif word == "BYEBYE":
+                    tokens.append(t.Token(t.Token_BREAK, word))
+                elif word == "ELEVATE":
+                    tokens.append(t.Token(t.Token_RETURN, word))
+                #logical operators
+                elif word == "FAKE":
+                    tokens.append(t.Token(t.Token_NOT, word))
+                elif word == "MOGGED":
+                    tokens.append(t.Token(t.Token_AND, word))
+                elif word == "GOD":
+                    tokens.append(t.Token(t.Token_OR, word))
+                #special values
+                elif word == "VERUM":
+                    tokens.append(t.Token(t.Token_TRUE, word))
+                elif word == "FALSUM":
+                    tokens.append(t.Token(t.Token_FALSE, word))
+                elif word == "NIHIL":
+                    tokens.append(t.Token(t.Token_NULL, word))
+                #function
+                elif word == "COMMAND":
+                    tokens.append(t.Token(t.Token_FUNCT_DECLARATION))
+                else:
+                    char = word[0]
+                    return [], error.IllegalCharError("'"+char+"'")
                 self.advance()
-            elif self.current_char == '-':
-                tokens.append(t.Token(t.Token_MINUS, "-"))
+            #operators
+            elif self.current_char == '<':
+                if self.peek() == '-':
+                    self.advance()
+                    self.advance()
+                    tokens.append(t.Token(t.Token_ASSIGNMENT_OP, "<-"))
+                elif self.peek() == '=':
+                    self.advance()
+                    self.advance()
+                    tokens.append(t.Token(t.Token_LESS_EQUAL_OP, "<="))
+                else:
+                    tokens.append(t.Token(t.Token_LESS_OP, "<"))
+                    self.advance()
+            elif self.current_char == '>':
+                if self.peek() == '=':
+                    self.advance()
+                    self.advance()
+                    tokens.append(t.Token(t.Token_GREATER_EQUAL_OP, ">="))
+                else:
+                    tokens.append(t.Token(t.Token_GREATER_OP, ">"))
+                    self.advance()
+            elif self.current_char == '=' and self.peek() == '=':
                 self.advance()
-            elif self.current_char == '*':
-                tokens.append(t.Token(t.Token_MUL, "*"))
                 self.advance()
-            elif self.current_char == '/':
-                tokens.append(t.Token(t.Token_DIV, "/"))
+                tokens.append(t.Token(t.Token_EQUAL_OP, "=="))
+            elif self.current_char == '!' and self.peek() == '=':
                 self.advance()
-            
+                self.advance()
+                tokens.append(t.Token(t.Token_DIFF_OP, "!="))    
+            #symbols
             elif self.current_char == '(':
                 tokens.append(t.Token(t.Token_LPAREN, "("))
                 self.advance()
             elif self.current_char == ')':
                 tokens.append(t.Token(t.Token_RPAREN, ")"))
                 self.advance()
+            elif self.current_char == ',':
+                tokens.append(t.Token(t.Token_SEPARATION, ","))
+                self.advance()
+            elif self.current_char == '#':
+                tokens.append(self.make_comm())
+            elif self.current_char == '$':
+                tokens.append(t.Token(t.Token_END, "$"))
+                self.advance()
+            #errors
             elif self.current_char == '¬':
-                return [], error.MissingCharTextError()
+                return [], error.MissingCharTextError(self.details)
             else:
                 char = self.current_char
                 self.advance()
@@ -128,13 +204,35 @@ class Lexer:
                 txt_str += self.current_char
             self.advance()
 
+        txt_str = "@"+txt_str+"@"
         if count == 2:
             if(txt_str.__len__() > 1):
                 return t.Token(t.Token_STRING, txt_str) 
             else:
                 return t.Token(t.Token_CHAR, txt_str)
         else:
-            self.missingChar()
+            self.missingChar("@")
+            return ""
+        
+    def make_comm(self):
+        comm_str = ''
+        count = 0
+
+        while self.current_char is not None:
+            if self.current_char == '#':
+                count+=1
+                if count == 2:
+                    self.advance()
+                    break
+            else:
+                comm_str += self.current_char
+            self.advance()
+
+        comm_str = "#"+comm_str+"#"
+        if count == 2:
+            return t.Token(t.Token_COMM, comm_str)
+        else:
+            self.missingChar("#")
             return ""
         
     def make_var(self):
@@ -147,6 +245,16 @@ class Lexer:
             var_str += self.current_char
             self.advance()
         return var_str
+    
+    def make_word(self):
+        word_str = ''
+        while self.current_char is not None:
+            if self.current_char == ' ':
+                break
+            word_str += self.current_char
+            self.advance()
+        return word_str
+    
 
 def run(text):
     lexer = Lexer(text)
