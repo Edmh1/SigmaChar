@@ -1,0 +1,199 @@
+@font-face {
+    font-family: 'Akira';
+    src: url('./assets/fonts/Akira.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Nexa';
+    src: url(./assets/fonts/Nexa-ExtraLight.ttf) format('.ttf');
+}
+
+html, body{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #D5CEA3;
+    background-size: cover;
+    background-repeat:no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header{
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+header .logo{
+    margin: 2%;
+    margin-right: 20px;
+}
+
+header .tittle{
+    flex: 1;
+    font-family: 'Akira';
+    font-size: 30px;
+    margin-left: 20px;
+    color: #1A120B;
+}
+
+.container {
+    margin-top: 3%;
+    display: flex;
+    width: 80%;
+    height: 80%;
+}
+
+.input-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-section .input{
+    border: none;
+    width: 100%;
+    height: 60%;
+    resize: none;
+    padding: 15px;
+    overflow-y: auto;
+    overflow-x: auto;
+    background-color: rgba(255, 255, 255, 80%);
+    border-radius: 10px;
+    font-family: 'Nexa';
+    color: #262626;
+}
+
+.input-section .input:focus{
+    outline: none;
+}
+
+.input-section .input::-webkit-scrollbar {
+    width: 7px; 
+    height: 10px;
+}
+
+.input-section .input::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 60%);
+    border-radius: 6px;
+}
+
+.input-section .input::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+    border-radius: 6px; 
+}
+
+.input-section .input::-webkit-scrollbar-thumb:hover {
+    cursor: default;
+}
+
+.input-section button{
+    margin-top: 20px;
+    margin-left: 36%;
+    font-family: 'Nexa';
+    font-size: 17px;
+    padding: 1em 2.7em;
+    font-weight: 500;
+    background: #3C2A21;
+    border: none;
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.6em;
+    cursor: pointer;
+    width: fit-content;
+    letter-spacing: 2px;
+  }
+  
+  .gradient {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    border-radius: 0.6em;
+    margin-top: -0.25em;
+    background-image: linear-gradient(
+      rgba(0, 0, 0, 0),
+      rgba(0, 0, 0, 0),
+      rgba(0, 0, 0, 0.3)
+    );
+  }
+  
+  .label {
+    position: relative;
+    top: -1px;
+    color: #E5E5CB;
+  }
+  
+  .transition {
+    transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    transition-duration: 500ms;
+    background-color: rgba(213, 206, 163, 0.6);
+    border-radius: 9999px;
+    width: 0;
+    height: 0;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  button:hover .transition {
+    width: 14em;
+    height: 14em;
+  }
+  
+  button:active {
+    transform: scale(0.97);
+  }
+  
+.results {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-left: 60px;
+}
+
+.results .results-content{
+    font-family: 'Nexa';
+    text-align: left;
+    color:#262626;
+    width: 562px;
+    height: 331px;
+    background: none;
+    resize: none;
+    outline: none;
+    border: none;
+    overflow-y: scroll;
+    font-size: 15px;
+}
+
+.results .results-content:focus{
+    outline: none;
+}
+
+.results .results-content::-webkit-scrollbar {
+    width: 7px; 
+    height: 10px;
+}
+
+.results .results-content::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 60%);
+    border-radius: 6px;
+}
+
+.results .results-content::-webkit-scrollbar-track {
+    background-color: none;
+    border-radius: 6px; 
+}
+
+.results .results-content::-webkit-scrollbar-thumb:hover {
+    cursor: default;
+}
