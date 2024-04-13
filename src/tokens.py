@@ -47,11 +47,12 @@ Token_EQUAL_OP         = 'EQUAL_OP'
 Token_DIFF_OP          = 'DIFFERENT_OP'
 
 #Symbols
-Token_LPAREN     = 'LPAREN'
-Token_RPAREN     = 'RPAREN'
-Token_SEPARATION = 'SEPARATION'
-Token_COMM       = 'COMMENT'
-Token_END        = 'END_LINE'
+Token_LPAREN         = 'LPAREN'
+Token_RPAREN         = 'RPAREN'
+Token_SEPARATION     = 'SEPARATION'
+Token_STRUCTURE_BODY = 'STRUCTURE_BODY'
+Token_COMM           = 'COMMENT'
+Token_END            = 'END_LINE'
 
 class Token:
     def __init__(self, type, value = None):

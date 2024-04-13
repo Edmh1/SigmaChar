@@ -5,7 +5,7 @@
 
 @font-face {
     font-family: 'Nexa';
-    src: url(./assets/fonts/Nexa-ExtraLight.ttf) format('.ttf');
+    src: url(./assets/fonts/Nexa-ExtraLight.ttf) format('opentype');
 }
 
 html, body{
@@ -32,14 +32,14 @@ header{
 
 header .logo{
     margin: 2%;
-    margin-right: 20px;
 }
 
 header .tittle{
     flex: 1;
     font-family: 'Akira';
     font-size: 30px;
-    margin-left: 20px;
+    margin-left: 3px;
+    margin-right: 3px;
     color: #1A120B;
 }
 
@@ -68,6 +68,7 @@ header .tittle{
     border-radius: 10px;
     font-family: 'Nexa';
     color: #262626;
+    font-weight: 900;
 }
 
 .input-section .input:focus{
@@ -96,7 +97,7 @@ header .tittle{
 .input-section button{
     margin-top: 20px;
     margin-left: 36%;
-    font-family: 'Nexa';
+    font-family: 'Akira';
     font-size: 17px;
     padding: 1em 2.7em;
     font-weight: 500;
@@ -156,6 +157,7 @@ header .tittle{
 .results {
     flex: 1;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: flex-start;
     margin-left: 60px;
@@ -173,6 +175,8 @@ header .tittle{
     border: none;
     overflow-y: scroll;
     font-size: 15px;
+    margin-top: -30px;
+    font-weight: 900;
 }
 
 .results .results-content:focus{
@@ -196,4 +200,17 @@ header .tittle{
 
 .results .results-content::-webkit-scrollbar-thumb:hover {
     cursor: default;
+}
+
+.back{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    font-family: 'Nexa';
+    font-weight: 900;
+    text-decoration: underline;
+}
+
+.back:hover{
+    cursor: pointer;
 }

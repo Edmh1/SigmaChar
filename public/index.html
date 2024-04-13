@@ -9,8 +9,9 @@
 </head>
 <body>
     <header>
-        <img class="logo" src="assets/img/logoSigmaCharSinFondo.png" width="75px" height="75px">
-        <h2 class="tittle">SIGMA CHAR</h2>
+        <h2 class="tittle">SIGMA      </h2>
+        <img class="logo" src="assets/img/logoSigmaCharSinFondo.png" width="100px">
+        <h2 class="tittle"> CHAR</h2>
     </header>
     <div class="container">
         <div class="input-section">
@@ -22,7 +23,7 @@
             </button>
         </div>
         <div class="results">
-            <textarea class = "results-content" readonly>
+            <textarea id= "documentation" class = "results-content" readonly>
 SigmaChar es un lenguaje de programación basado en el léxico sigma, aquí un peuqueño resumen de nuestro lenguaje:
 
             1. Tipos de variables:
@@ -51,7 +52,7 @@ SigmaChar es un lenguaje de programación basado en el léxico sigma, aquí un p
                 NIHIL = null
 
             5. Operadores:
-                '->' = Asignación
+                '<-' = Asignación
                 '==' = Igual
                 '!=' = Diferente
                 '>' = Mayor que
@@ -64,7 +65,7 @@ SigmaChar es un lenguaje de programación basado en el léxico sigma, aquí un p
                 ')' = Parentesis derecho
                 ',' = Coma flotante
                 '@' = Nombre de variables
-                '//' = Comentarios
+                '#' = Comentarios
                 '$' = Fin de linea
 
             7. Palabras claves:
@@ -72,13 +73,14 @@ SigmaChar es un lenguaje de programación basado en el léxico sigma, aquí un p
 
     Aquí un pequeño ejempplo:
 
-    SIGMA @entero -> 2$
-    REAL @float -> 0$
+    SIGMA entero <- 2$
+    REAL float <- 0$
 
-    ALPHA (@entero == 2 MOGGED  @float == 0){
-        @float -> @entero * 3,1416$
-    }
+    ALPHA (entero == 2 MOGGED float == 0),
+        float -> entero * 3,1416$
+    
             </textarea>
+            <h5 class = "back" onclick="back()">Volver a la documentación</h5>
         </div>
     </div>
 </body>

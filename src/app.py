@@ -5,10 +5,10 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
 
-@app.route('/', methods=['POST'])
+@app.route('/analyzeCode', methods=['POST'])
 def analyze_code():
     if request.method == 'POST':
-        code = request.json
+        code = request.json['codeInput']
         result, err = lexer.run(code)
         if err:
             return jsonify(error=err), 400

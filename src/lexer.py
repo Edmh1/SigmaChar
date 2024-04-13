@@ -16,8 +16,8 @@ special_values = ['VERUM', 'FALSUM', 'NIHIL']
 function_key_word = 'COMMAND'
 #              =    <   >    <=   >=     EQUAL  DIFF  
 operators = ['<-', '<', '>', '<=', '>=', '==', '!=']
-#            (    )    ,    "    #    ;
-symbols = ['(', ')', ',', '@', '#', '$']
+#            (    )    ;    :   "    #    ;
+symbols = ['(', ')', ';', ':', '@', '#', '$']
 
 
 
@@ -156,9 +156,11 @@ class Lexer:
             elif self.current_char == ')':
                 tokens.append(t.Token(t.Token_RPAREN, ")"))
                 self.advance()
-            elif self.current_char == ',':
-                tokens.append(t.Token(t.Token_SEPARATION, ","))
+            elif self.current_char == ';':
+                tokens.append(t.Token(t.Token_SEPARATION, ";"))
                 self.advance()
+            elif self.current_char == ':':
+                tokens.append(t.Token(t.Token_STRUCTURE_BODY, ":"))
             elif self.current_char == '#':
                 tokens.append(self.make_comm())
             elif self.current_char == '$':

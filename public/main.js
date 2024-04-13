@@ -1,12 +1,23 @@
+var originalDocumentation = null;
+
 function getInput(){
     var code = document.getElementById("inputCode").value;
     sendCode(code);
 }
 
 function sendCode(code) {
-    fetch('puerto que da el flask/analyzeCode', {
+    if(originalDocumentation == null){
+        originalDocumentation = document.querySelector(".results-content").textContent;
+        console.log(originalDocumentation);
+    }
+    fetch('http://127.0.0.1:5000/analyzeCode', {
         method: 'POST',
-        body: JSON.stringify({ code: code })
+        headers:{
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': 'http://127.0.0.1:5000',
+            'Access-Control-Credentials' : 'true'
+        },
+        body: JSON.stringify({ codeInput: code })
     })
     .then(response => {
         if (!response.ok) {
@@ -19,7 +30,7 @@ function sendCode(code) {
         if (data.error) {
             alert('Error en el análisis del código: ' + data.error);
         } else {
-            var textarea = document.querySelector('.results-content');
+            var textarea = document.getElementById("documentation");
             textarea.value = data.result;
         }
     })
@@ -27,4 +38,8 @@ function sendCode(code) {
         console.error('Error:', error);
         alert('Ocurrió un error al procesar el código');
     });
+}
+
+function back(){
+    document.querySelector(".results-content").value = originalDocumentation;
 }
