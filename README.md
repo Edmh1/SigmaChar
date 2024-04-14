@@ -1,11 +1,20 @@
- ![LOGOGIGACHAR](https://i.imgur.com/lu9BgSl.jpg)
+<h1 style="color:blue;">SIGMACHAR🗿 Programming Language (Lexer)</h1>
+
+<img src="https://i.imgur.com/lu9BgSl.jpg" alt="LOGOSIGMACHAR" width="300">
+
+###  Introduction to Lexer:
+
+A lexer, also known as a lexical analyzer, is a fundamental component of a compiler or interpreter that is responsible for analyzing the stream of characters from a source program and dividing it into meaningful tokens. These tokens are basic language units such as keywords, identifiers, numbers, and symbols.
+
+###  Importance of Lexer:
+
+The lexer breaks down the source code into tokens, making it easier for subsequent processing by the compiler or interpreter. By separating the code into more manageable parts, the lexer simplifies the task of syntactic and semantic analysis, thus helping to detect errors and facilitating the generation of intermediate code or direct execution of the program.
+
+An efficient and accurate lexer is essential to ensure that the source code is parsed correctly and translated appropriately into executable instructions. Additionally, the design of the lexer can significantly affect the performance and maintainability of the compiler or interpreter overall.
 
 ---
-<h1 align="center" style="color:red;">SIGMACHAR 🗿</h1>
 
----
-
-###  En nuestro lenguaje, las palabras clave de control de flujo son:
+###  Control Flow Keywords:
     - If -> ALPHA
     - Else -> BETA
     - While -> ALPHA_LOOP
@@ -15,45 +24,49 @@
 
 ---
 
-### Los tipos de variables definidas en nuestro lenguaje son:
+###  Variable Types:
     - bool -> STATUS
     - int -> SIGMA 
     - float -> REAL
     - char -> CHAD
     - str -> GIGACHAD
+
 ---
 
-### Los operadores definidos en nuestro lenguaje son:
-    - Suma (+)
-    - Resta (-)
-    - Multiplicación (*)
-    - División (/)
-    - Mayor que (>)
-    - Mayor o igual que (>=)
-    - Menor que (<)
-    - Menor o igual que (<=)
-    - Igual a (==)
-    - Diferente de (!=)
-    - Asignación (<-)
+###  Operators:
+    - Addition (+)
+    - Subtraction (-)
+    - Multiplication (*)
+    - Division (/)
+    - Greater than (>)
+    - Greater than or equal to (>=)
+    - Less than (<)
+    - Less than or equal to (<=)
+    - Equal to (==)
+    - Not equal to (!=)
+    - Assignment (<-)
+
 ---
 
-### Los operadores logicos definidos en nuestro lenguaje son:
-    not -> FAKE 
-    and -> MOGGED  
-    or -> GOD 
+###  Logical Operators:
+    - not -> FAKE 
+    - and -> MOGGED  
+    - or -> GOD 
+
 ---
 
-###  En nuestro lenguaje, los simbolos serian:
-    -  Parentesis izquierdo   ->  '('
-    -  Parentesis derecho  ->  ')'
-    -  separación    ->   ';'
-    -  Estructura del body -> ':'
-    -  Apertura y cierre de cadena  ->  '@'
-    -  Apertura y cierre de Comentarios  -> '#' 
-    -  Fin de linea  -> '$'
+###  Symbols:
+    - Left Parenthesis   ->  '('
+    - Right Parenthesis  ->  ')'
+    - Semicolon          ->  ';'
+    - Body Structure     ->  ':'
+    - String Delimiter   ->  '@'
+    - Comment Delimiter  ->  '#' 
+    - End of Line        ->  '$'
+
 ---
 
-###  Nuestras palabras claves usadas en nuestro lenguaje son: 
+###  Reserved Keywords:
     - def -> COMMAND
     - True -> VERUM
     - False -> FALSUM
