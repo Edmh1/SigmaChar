@@ -54,14 +54,14 @@ class Lexer:
         while self.current_char is not None:
             if re.match(r'[ \t]', self.current_char):
                 self.advance()
-            #data types
+            # data types
             elif re.match(r'[\d]', self.current_char):
                 tokens.append(self.make_number())
             elif self.current_char == '@':
                 tokens.append(self.make_text())
             elif re.match(r'^[a-z]', self.current_char):
                 tokens.append(t.Token(t.Token_VAR, self.make_var()))
-            #aritmetic_op
+            # arithmetic_op
             elif re.match(r'[+\-*\/]', self.current_char):
                 if self.current_char == '+':
                     tokens.append(t.Token(t.Token_PLUS, "+"))
@@ -72,60 +72,42 @@ class Lexer:
                 elif self.current_char == '/':
                     tokens.append(t.Token(t.Token_DIV, "/"))
                 self.advance()
-            #reserved words
+            # reserved words
             elif re.match(r'^[A-Z]', self.current_char):
                 word = self.make_word()
-                #variable types
-                if word == "STATUS":
-                    tokens.append(t.Token(t.Token_Type_BOOLEAN, word))
-                elif word == "GIGACHAD":
-                    tokens.append(t.Token(t.Token_Type_STRING, word))
-                elif word == "CHAD":
-                    tokens.append(t.Token(t.Token_Type_CHAR, word))
-                elif word == "SIGMA":
-                    tokens.append(t.Token(t.Token_Type_INTEGER, word))
-                elif word == "REAL":
-                    tokens.append(t.Token(t.Token_Type_FLOAT, word))
-                #control structures
-                elif word == "ALPHA":
-                    tokens.append(t.Token(t.Token_CONDITIONAL, word))
-                elif word == "BETA":
-                    tokens.append(t.Token(t.Token_CONDITIONAL, word))
-                elif word == "ALPHA_LOOP":
-                    tokens.append(t.Token(t.Token_LOOP, word))
-                elif word == "BETA_LOOP":
-                    tokens.append(t.Token(t.Token_LOOP, word))
-                elif word == "BYEBYE":
-                    tokens.append(t.Token(t.Token_BREAK, word))
-                elif word == "ELEVATE":
-                    tokens.append(t.Token(t.Token_RETURN, word))
-                #logical operators
-                elif word == "FAKE":
-                    tokens.append(t.Token(t.Token_NOT, word))
-                elif word == "MOGGED":
-                    tokens.append(t.Token(t.Token_AND, word))
-                elif word == "GOD":
-                    tokens.append(t.Token(t.Token_OR, word))
-                #special values
-                elif word == "VERUM":
-                    tokens.append(t.Token(t.Token_TRUE, word))
-                elif word == "FALSUM":
-                    tokens.append(t.Token(t.Token_FALSE, word))
-                elif word == "NIHIL":
-                    tokens.append(t.Token(t.Token_NULL, word))
-                #function
-                elif word == "COMMAND":
-                    tokens.append(t.Token(t.Token_FUNCT_DECLARATION))
+                # variable types
+                token_map = {
+                    "STATUS": t.Token_Type_BOOLEAN,
+                    "GIGACHAD": t.Token_Type_STRING,
+                    "CHAD": t.Token_Type_CHAR,
+                    "SIGMA": t.Token_Type_INTEGER,
+                    "REAL": t.Token_Type_FLOAT,
+                    "ALPHA": t.Token_CONDITIONAL,
+                    "BETA": t.Token_CONDITIONAL,
+                    "ALPHA_LOOP": t.Token_LOOP,
+                    "BETA_LOOP": t.Token_LOOP,
+                    "BYEBYE": t.Token_BREAK,
+                    "ELEVATE": t.Token_RETURN,
+                    "FAKE": t.Token_NOT,
+                    "MOGGED": t.Token_AND,
+                    "GOD": t.Token_OR,
+                    "VERUM": t.Token_TRUE,
+                    "FALSUM": t.Token_FALSE,
+                    "NIHIL": t.Token_NULL,
+                    "COMMAND": t.Token_FUNCT_DECLARATION
+                }
+                if word in token_map:
+                    tokens.append(t.Token(token_map[word], word))
                 else:
                     char = word[0]
-                    return [], error.IllegalCharError("'"+char+"'")
+                    return [], error.IllegalCharError("'" + char + "'")
                 self.advance()
-            #operators
+            # operators
             elif self.current_char == '<':
                 if self.peek() == '-':
                     self.advance()
                     self.advance()
-                    tokens.append(t.Token(t.Token_ASSIGNMENT_OP, "<-"))
+                    tokens.append(t.Token(t.Token_ASSIGNMENT_OP, "<-")) 
                 elif self.peek() == '=':
                     self.advance()
                     self.advance()
@@ -148,32 +130,29 @@ class Lexer:
             elif self.current_char == '!' and self.peek() == '=':
                 self.advance()
                 self.advance()
-                tokens.append(t.Token(t.Token_DIFF_OP, "!="))    
-            #symbols
-            elif self.current_char == '(':
-                tokens.append(t.Token(t.Token_LPAREN, "("))
-                self.advance()
-            elif self.current_char == ')':
-                tokens.append(t.Token(t.Token_RPAREN, ")"))
-                self.advance()
-            elif self.current_char == ';':
-                tokens.append(t.Token(t.Token_SEPARATION, ";"))
-                self.advance()
-            elif self.current_char == ':':
-                tokens.append(t.Token(t.Token_STRUCTURE_BODY, ":"))
-            elif self.current_char == '#':
-                tokens.append(self.make_comm())
-            elif self.current_char == '$':
-                tokens.append(t.Token(t.Token_END, "$"))
-                self.advance()
-            #errors
+                tokens.append(t.Token(t.Token_DIFF_OP, "!="))
+            # symbols
+            elif self.current_char in symbols:
+                token_map = {'(': t.Token_LPAREN, ')': t.Token_RPAREN, ';': t.Token_SEPARATION, ':': t.Token_STRUCTURE_BODY, '#': self.make_comm, '$': t.Token_END}
+                if self.current_char == '#':
+                    tokens.append(token_map[self.current_char]())
+                else:
+                    tokens.append(t.Token(token_map[self.current_char], self.current_char))
+                    self.advance()
+            # errors
             elif self.current_char == '¬':
                 return [], error.MissingCharTextError(self.details)
             else:
                 char = self.current_char
                 self.advance()
-                return [], error.IllegalCharError("'"+char+"'")
-        return tokens, None
+                return [], error.IllegalCharError("'" + char + "'")
+        
+        # Convert token list in a ditiona
+        token_dict = {}
+        for index, token in enumerate(tokens):
+            token_dict[index] = {"token": token.type, "value": token.value}
+        return token_dict, None
+
     
     def make_number(self):
         num_str = ''
@@ -261,7 +240,6 @@ class Lexer:
 def run(text):
     lexer = Lexer(text)
     tokens, error = lexer.make_tokens() 
-
     return tokens, error
 
 

@@ -7,5 +7,5 @@ while True:
     if err: 
         print(err.as_string())
     else: 
-        print("|| Lexema:",result,"||") 
+        print(result) 
         
