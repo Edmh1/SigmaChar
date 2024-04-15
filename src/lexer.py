@@ -147,7 +147,7 @@ class Lexer:
                 self.advance()
                 return [], error.IllegalCharError("'" + char + "'")
         
-        # Convert token list in a ditiona
+        # Convert token list in a dictionary
         token_dict = {}
         for index, token in enumerate(tokens):
             token_dict[index] = {"token": token.type, "value": token.value}
