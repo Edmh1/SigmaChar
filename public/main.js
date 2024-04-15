@@ -4,7 +4,7 @@ var tokensJSON = null;
 
 function getInput(){
     var code = document.getElementById("inputCode").value;
-    code = code.replace(/[\r\n]+/g, ' ');
+    code = code.replace(/[\r\n]+/g, '');
     sendCode(code);
 }
 
@@ -49,6 +49,7 @@ function showTokens(tokensJSON){
     var tableResults = null;
 
     tableResults = 'Valor\tToken\n';
+    tableResults += '----------------------\n';
     Object.keys(json).forEach(index => {
         if(json[index].token == undefined){
             tableResults = `Hay un error en el código.\nDetalles: ${json[index].error} ${json[index].details}\n`
@@ -57,16 +58,27 @@ function showTokens(tokensJSON){
             let value = json[index].value;
     
             // Agregar cada token al string de la tabla
-            tableResults += `${value}\t\t${token}\n`;
+            tableResults += `${value}\t->\t${token}\n`;
         }
     });
 
     // Mostrar el string de la tabla en el textarea
     var resultsTextarea = document.getElementById("documentation");
     resultsTextarea.value = tableResults;
+    resultsTextarea.style.backgroundColor = 'black';
+    resultsTextarea.style.color = 'white'
+    resultsTextarea.style.paddingLeft = '70px';
+    resultsTextarea.style.paddingTop = '50px';
+    resultsTextarea.style.paddingBottom = '20px';
+    resultsTextarea.style.borderRadius = '10px';
 }
 
 
 function back(){
-    document.querySelector(".results-content").value = originalDocumentation;
+    var resultsTextarea = document.querySelector(".results-content");
+    resultsTextarea.value = originalDocumentation
+    resultsTextarea.style.backgroundColor = 'rgba(255,255,255,0)';
+    resultsTextarea.style.color = '#262626';
+    resultsTextarea.style.padding = '0px';
+    resultsTextarea.style.borderRadius = 'unset';
 }
