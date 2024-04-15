@@ -1,6 +1,6 @@
 import re
-import tokens as t
-import error
+import src.tokens as t
+import src.error as error
 
 #
 aritmetics_op = ['+','-','*','/']
