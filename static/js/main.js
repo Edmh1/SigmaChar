@@ -78,7 +78,7 @@ function showTokens(tokensJSON){
 function back(){
     var resultsTextarea = document.querySelector(".results-content");
     resultsTextarea.value = originalDocumentation
-    resultsTextarea.style.backgroundColor = 'rgba(255,255,255,0)';
+    resultsTextarea.style.backgroundColor = 'white';
     resultsTextarea.style.color = '#262626';
     resultsTextarea.style.padding = '0px';
     resultsTextarea.style.borderRadius = 'unset';
