@@ -1,6 +1,6 @@
 <h1 style="color:blue;">SIGMACHAR🗿 Programming Language (Lexer)</h1>
 
-<img src="https://i.imgur.com/lu9BgSl.jpg" alt="LOGOSIGMACHAR" width="300">
+<img src="https://imgur.com/a/QrMIbwm" alt="LOGOSIGMACHAR" width="300">
 
 ###  Introduction to Lexer:
 
