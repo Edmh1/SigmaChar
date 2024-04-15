@@ -81,5 +81,7 @@ function back(){
     resultsTextarea.style.backgroundColor = 'white';
     resultsTextarea.style.color = '#262626';
     resultsTextarea.style.padding = '0px';
-    resultsTextarea.style.borderRadius = 'unset';
+    resultsTextarea.style.borderRadius = '10px';
+    resultsTextarea.style.padding = '20px'
+    
 }
