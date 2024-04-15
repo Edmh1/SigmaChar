@@ -5,6 +5,7 @@ var tokensJSON = null;
 function getInput(){
     var code = document.getElementById("inputCode").value;
     code = code.replace(/[\r\n]+/g, '');
+    code = code.replace(/\$/g, ' $');
     sendCode(code);
 }
 
@@ -52,7 +53,7 @@ function showTokens(tokensJSON){
     tableResults += '----------------------\n';
     Object.keys(json).forEach(index => {
         if(json[index].token == undefined){
-            tableResults = `Hay un error en el código.\nDetalles: ${json[index].error} ${json[index].details}\n`
+            tableResults = `There is an error in the code.\n\nDetails: ${json[index].error} ${json[index].details}\n`
         }else{
             let token = json[index].token;
             let value = json[index].value;
