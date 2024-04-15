@@ -161,6 +161,7 @@ header .tittle{
     justify-content: center;
     align-items: flex-start;
     margin-left: 60px;
+    margin-top: -130px;
 }
 
 .results .results-content{
@@ -175,7 +176,6 @@ header .tittle{
     border: none;
     overflow-y: scroll;
     font-size: 15px;
-    margin-top: -30px;
     font-weight: 900;
 }
 
