@@ -58,7 +58,7 @@ An efficient and accurate lexer is essential to ensure that the source code is p
 ###  Symbols:
     - Left Parenthesis   ->  '('
     - Right Parenthesis  ->  ')'
-    - Semicolon          ->  ';'
+    - Separation         ->  ';'
     - Body Structure     ->  ':'
     - String Delimiter   ->  '@'
     - Comment Delimiter  ->  '#' 
