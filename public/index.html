@@ -3,85 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sigma Char</title>
+    <title>🗿 SigmaChar</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="main.js"></script>
 </head>
 <body>
     <header>
-        <h2 class="tittle">SIGMA      </h2>
+        <h2 class="title">SIGMA</h2>
         <img class="logo" src="assets/img/logoSigmaCharSinFondo.png" width="100px">
-        <h2 class="tittle"> CHAR</h2>
+        <h2 class="title">CHAR</h2>
     </header>
     <div class="container">
         <div class="input-section">
-            <textarea id= "inputCode" class="input" rows="4" cols="50"></textarea>
+            <textarea id="inputCode" class="input" rows="4" cols="50"></textarea>
             <button onclick="getInput()">
-                    <span class="transition"></span>
-                    <span class="gradient"></span>
-                    <span class="label">ENVIAR</span>             
+                <span class="transition"></span>
+                <span class="gradient"></span>
+                <span class="label">ENVIAR</span>             
             </button>
         </div>
         <div class="results">
-            <textarea id= "documentation" class = "results-content" readonly>
-SigmaChar es un lenguaje de programación basado en el léxico sigma, aquí un peuqueño resumen de nuestro lenguaje:
-
-            1. Tipos de variables:
-                STATUS = boolean
-                GIGACHAD = string
-                CHAD = char
-                SIGMA = int
-                REAL = float
-
-            2. Estrucutas de control:
-                ALPHA = if
-                BETA = else
-                ALPHA_LOOP = while
-                BETA_LOOP = for
-                BYEBYE = break
-                ELEVATE = return
-
-            3. Operadores lógicos:
-                FAKE = not
-                MOGGED = and
-                GOD = or
-
-            4. Valores especiales:
-                VERUM = true
-                FALSUM = false
-                NIHIL = null
-
-            5. Operadores:
-                '<-' = Asignación
-                '==' = Igual
-                '!=' = Diferente
-                '>' = Mayor que
-                '<' = Menor que
-                '>=' = Mayor o igual que
-                '<=' = Menor o igual que
-
-            6. Simbolos:
-                '(' = Parentesis izquierdo
-                ')' = Parentesis derecho
-                ',' = Coma flotante
-                '@' = Nombre de variables
-                '#' = Comentarios
-                '$' = Fin de linea
-
-            7. Palabras claves:
-                COMMAND = definir función
-
-    Aquí un pequeño ejempplo:
-
-    SIGMA entero <- 2$
-    REAL float <- 0$
-
-    ALPHA (entero == 2 MOGGED float == 0),
-        float -> entero * 3,1416$
-    
+            <textarea id="documentation" class="results-content" readonly>
+SigmaChar is a programming language based on the sigma lexicon, here is a small summary of our language:
+        1. Variable Types:
+            - bool -> STATUS
+            - int -> SIGMA 
+            - float -> REAL
+            - char -> CHAD
+            - str -> GIGACHAD
+        2. Control Flow Keywords:
+            - If -> ALPHA
+            - Else -> BETA
+            - While -> ALPHA_LOOP
+            - For -> BETA_LOOP
+            - break -> BYEBYE
+            - return -> ELEVATE
+        3. Logical Operators:
+            - not -> FAKE 
+            - and -> MOGGED  
+            - or -> GOD 
+        4. Reserved Keywords:
+            - def -> COMMAND
+            - True -> VERUM
+            - False -> FALSUM
+            - None -> NIHIL
+        5. Operators:
+            - Addition (+)
+            - Subtraction (-)
+            - Multiplication (*)
+            - Division (/)
+            - Greater than (>)
+            - Greater than or equal to (>=)
+            - Less than (<)
+            - Less than or equal to (<=)
+            - Equal to (==)
+            - Not equal to (!=)
+            - Assignment (<-)
+        6. Symbols:
+            - Left Parenthesis   ->  '('
+            - Right Parenthesis  ->  ')'
+            - Separation         ->  ';'
+            - Body Structure     ->  ':'
+            - String Delimiter   ->  '@'
+            - Comment Delimiter  ->  '#' 
+            - End of Line        ->  '$'     
+        Example:
+            SIGMA integer <- 2$
+            REAL float <- 0$
+            ALPHA (integer == 2 MOGGED float == 0):
+                float <- integer * 3,1416$
             </textarea>
-            <h5 class = "back" onclick="back()">Volver a la documentación</h5>
+            <h5 class="back" onclick="back()">Return to documentation</h5>
         </div>
     </div>
+    <footer>
+        <div class="copyright">
+            © 2024 Todos los derechos reservados.
+        </div>
+        <div class="github-link">
+            <a href="https://github.com/Edmh1/Lexer">
+                <img src="assets/img/github.png" alt="GitHub">
+            </a>
+        </div>
+    </footer>
 </body>
 </html>
