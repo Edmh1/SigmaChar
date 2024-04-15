@@ -4,7 +4,7 @@ var tokensJSON = null;
 
 function getInput(){
     var code = document.getElementById("inputCode").value;
-    code = code.replace(/[\r\n]+/g, '');
+    code = code.replace(/[\r\n]+/g, ' ');
     code = code.replace(/\$/g, ' $');
     sendCode(code);
 }
